@@ -51,6 +51,8 @@ class ApiController extends Controller
 
     public function actionStatus()
     {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
         $data = [
             'api1' => [
                 'id' => 1,
@@ -75,9 +77,7 @@ class ApiController extends Controller
             ],
         ];
 
-        echo \yii\helpers\Json::encode($data);
-
-        return '';
+        return $this->render($data);
     }
 
     /**
