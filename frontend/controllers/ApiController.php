@@ -46,38 +46,40 @@ class ApiController extends Controller
 
     public function actionIndex()
     {
-        $this->actionStatus();
+        return $this->actionStatus();
     }
 
     public function actionStatus()
     {
-        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-
         $data = [
-            'api1' => [
+            '0' => [
                 'id' => 1,
                 'name' => 'api1',
                 'last_time_checked' => '2016.02.13 12:13:14',
                 'last_time_working' => '2016.02.03 10:11:12',
+                'status' => 'ok',
                 'latency' => 12,
             ],
-            'api2' => [
+            '1' => [
                 'id' => 2,
                 'name' => 'api2',
                 'last_time_checked' => '2016.02.13 12:13:14',
                 'last_time_working' => '2016.02.03 10:11:12',
+                'status' => 'ok',
                 'latency' => 12,
             ],
-            'api3' => [
+            '2' => [
                 'id' => 3,
                 'name' => 'api3',
                 'last_time_checked' => '2016.02.13 12:13:14',
                 'last_time_working' => '2016.02.03 10:11:12',
+                'status' => 'ok',
                 'latency' => 12,
-            ],
+            ]
         ];
 
-        return $this->render($data);
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        return $data;
     }
 
     /**

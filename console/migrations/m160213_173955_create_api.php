@@ -15,7 +15,7 @@ class m160213_173955_create_api extends Migration
             'requirement' =>$this->string(),
             'category' =>$this->string(),
             'updated_at' =>$this->bigInteger(),
-            'created_at '=>$this->bigInteger()
+            'created_at'=>$this->bigInteger()
         ]);
     }
 

@@ -29,14 +29,13 @@ return [
         'errorHandler' => [
             'errorAction' => 'api/error',
         ],
-        /*
-        'urlManager' => [
+        /*'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
             ],
-        ],
-        */
+        ],*/
     ],
     'params' => $params,
 ];
