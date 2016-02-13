@@ -1,6 +1,6 @@
 <?php
 
-namespace app\common\models;
+namespace common\models;
 
 use Yii;
 
@@ -21,6 +21,10 @@ use Yii;
  */
 class Api extends \yii\db\ActiveRecord
 {
+    const ACCESS_TYPE_ALWAYS = 'always';
+    const ACCESS_TYPE_TOKEN = 'token';
+    const ACCESS_TYPE_AUTH = 'auth';
+
     /**
      * @inheritdoc
      */

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+while true; do 
+	echo "Checking APIs..."
+	echo ""
+	/usr/bin/php yii status/all-api
+	echo "Waiting for 15 secs..."
+	echo ""
+	echo ""
+	sleep 15
+done

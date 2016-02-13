@@ -1,17 +1,19 @@
 <?php
 
-namespace app\common\models;
+namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "api_status".
  *
  * @property integer $api_id
- * @property string $name
  * @property integer $valid_json
  * @property integer $valid_data
  * @property string $http_status
+ * @property string $api_status_code
  * @property integer $request_sent_at
  * @property integer $latency
  * @property integer $updated_at
@@ -19,8 +21,21 @@ use Yii;
  *
  * @property Api $api
  */
-class ApiStatus extends \yii\db\ActiveRecord
+class ApiStatus extends ActiveRecord
 {
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                ],
+            ],
+        ];
+    }
+
     /**
      * @inheritdoc
      */
@@ -37,7 +52,7 @@ class ApiStatus extends \yii\db\ActiveRecord
         return [
             [['api_id'], 'required'],
             [['api_id', 'valid_json', 'valid_data', 'request_sent_at', 'latency', 'updated_at', 'created_at'], 'integer'],
-            [['name', 'http_status'], 'string', 'max' => 255],
+            [['api_status_code', 'http_status'], 'string', 'max' => 255],
             [['api_id'], 'unique'],
             [['api_id'], 'exist', 'skipOnError' => true, 'targetClass' => Api::className(), 'targetAttribute' => ['api_id' => 'id']],
         ];
@@ -50,7 +65,7 @@ class ApiStatus extends \yii\db\ActiveRecord
     {
         return [
             'api_id' => 'Api ID',
-            'name' => 'Name',
+            'api_status_code' => 'API Status Code',
             'valid_json' => 'Valid Json',
             'valid_data' => 'Valid Data',
             'http_status' => 'Http Status',
