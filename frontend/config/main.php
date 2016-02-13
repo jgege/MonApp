@@ -37,5 +37,11 @@ return [
             ],
         ],*/
     ],
+    'modules' => [
+        'gii' => [
+            'class' => 'yii\gii\Module',
+            'allowedIPs' => ['*'] // adjust this to your needs
+        ],
+    ],
     'params' => $params,
 ];
