@@ -65,7 +65,7 @@ class ApiController extends Controller
                 'name' => 'api2',
                 'last_time_checked' => '2016.02.13 12:13:14',
                 'last_time_working' => '2016.02.03 10:11:12',
-                'status' => 'ok',
+                'status' => 'error',
                 'latency' => 12,
             ],
             '2' => [
@@ -73,7 +73,7 @@ class ApiController extends Controller
                 'name' => 'api3',
                 'last_time_checked' => '2016.02.13 12:13:14',
                 'last_time_working' => '2016.02.03 10:11:12',
-                'status' => 'ok',
+                'status' => 'repairing',
                 'latency' => 12,
             ]
         ];
