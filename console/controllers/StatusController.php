@@ -24,8 +24,6 @@ class StatusController extends Controller
     public function actionAllApi()
     {
         $modelList = Api::find()
-            //->joinWith(['apiStatus'])
-            //->orderBy(['apiStatus.latency' => SORT_DESC])
             ->all();
 
         $apiRequest = new ApiRequest();

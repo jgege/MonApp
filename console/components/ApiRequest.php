@@ -42,6 +42,7 @@ class ApiRequest extends Component
             } else {
                 $statusModel->api_status_code = (string) $json['headers']['response_code'];
                 $statusModel->valid_json = 1;
+                $statusModel->last_time_worked_at = time();
             }
         }
 

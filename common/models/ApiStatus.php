@@ -16,6 +16,7 @@ use yii\db\ActiveRecord;
  * @property string $api_status_code
  * @property integer $request_sent_at
  * @property integer $latency
+ * @property integer $last_time_worked_at
  * @property integer $updated_at
  * @property integer $created_at
  *
@@ -51,7 +52,7 @@ class ApiStatus extends ActiveRecord
     {
         return [
             [['api_id'], 'required'],
-            [['api_id', 'valid_json', 'valid_data', 'request_sent_at', 'latency', 'updated_at', 'created_at'], 'integer'],
+            [['api_id', 'valid_json', 'valid_data', 'request_sent_at', 'latency', 'last_time_worked_at', 'updated_at', 'created_at'], 'integer'],
             [['api_status_code', 'http_status'], 'string', 'max' => 255],
             [['api_id'], 'unique'],
             [['api_id'], 'exist', 'skipOnError' => true, 'targetClass' => Api::className(), 'targetAttribute' => ['api_id' => 'id']],

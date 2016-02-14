@@ -59,7 +59,7 @@ class ApiController extends Controller
                     'id' => 'id',
                     'name' => 'api.name',
                     'last_time_checked' => 'FROM_UNIXTIME(request_sent_at)',
-                    'last_time_working' => 'FROM_UNIXTIME(api_status.updated_at)',
+                    'last_time_working' => 'FROM_UNIXTIME(api_status.last_time_worked_at)',
                     'status' => 'IF(COALESCE(api_status_code, http_status) = "200", "ok", "error")',
                     'latency' => 'latency',
                 ]
