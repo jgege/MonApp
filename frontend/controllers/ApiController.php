@@ -7,6 +7,8 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use common\models\Api;
+use common\models\ApiStatus;
 
 /**
  * Api controller
@@ -51,35 +53,23 @@ class ApiController extends Controller
 
     public function actionStatus()
     {
-        $data = [
-            '0' => [
-                'id' => 1,
-                'name' => 'api1',
-                'last_time_checked' => '2016.02.13 12:13:14',
-                'last_time_working' => '2016.02.03 10:11:12',
-                'status' => 'ok',
-                'latency' => 12,
-            ],
-            '1' => [
-                'id' => 2,
-                'name' => 'api2',
-                'last_time_checked' => '2016.02.13 12:13:14',
-                'last_time_working' => '2016.02.03 10:11:12',
-                'status' => 'error',
-                'latency' => 12,
-            ],
-            '2' => [
-                'id' => 3,
-                'name' => 'api3',
-                'last_time_checked' => '2016.02.13 12:13:14',
-                'last_time_working' => '2016.02.03 10:11:12',
-                'status' => 'repairing',
-                'latency' => 12,
-            ]
-        ];
+        $modelList = Api::find()
+            ->select(
+                [
+                    'id' => 'id',
+                    'name' => 'api.name',
+                    'last_time_checked' => 'request_sent_at',
+                    'last_time_working' => 'api_status.updated_at',
+                    'status' => 'IF(COALESCE(api_status_code, http_status) = "200", "ok", "error")',
+                    'latency' => 'latency',
+                ]
+            )
+            ->join('INNER JOIN', 'api_status', 'api_status.api_id = api.id')
+            ->asArray()
+            ->all();
 
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        return $data;
+        return $modelList;
     }
 
     /**
