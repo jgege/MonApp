@@ -7,6 +7,8 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use common\models\Api;
+use common\models\ApiStatus;
 
 /**
  * Site controller
@@ -16,7 +18,9 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $modelList = Api::find()->joinWith(['apiStatus'])->all();
+
+        return $this->render('index', ['modelList' => $modelList]);
     }
 
     /**

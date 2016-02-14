@@ -11,7 +11,7 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
-    'defaultRoute' => 'api/index',
+    'defaultRoute' => 'site/index',
     'components' => [
         'user' => [
             'identityClass' => 'common\models\User',
@@ -34,7 +34,6 @@ return [
             'showScriptName' => false,
             'rules' => [
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-        //        '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
             ],
         ],
     ],

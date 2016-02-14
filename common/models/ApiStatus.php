@@ -37,6 +37,15 @@ class ApiStatus extends ActiveRecord
         ];
     }
 
+    public function getStatus()
+    {
+        $statusCode = ($this->api_status_code !== null) ?  $this->api_status_code : $this->http_status;
+        if ($statusCode != 200 || $this->valid_data === false || $this->valid_json === false) {
+            return "error";
+        }
+        return "ok";
+    }
+
     /**
      * @inheritdoc
      */
