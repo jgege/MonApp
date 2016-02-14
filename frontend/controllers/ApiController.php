@@ -68,8 +68,13 @@ class ApiController extends Controller
             ->asArray()
             ->all();
 
+        $data = [];
+        foreach ($modelList as $i => $model) {
+            $data['api_' . $i] = $model;
+        }
+
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        return $modelList;
+        return $data;
     }
 
     /**
