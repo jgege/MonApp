@@ -38,6 +38,7 @@ class SiteController extends Controller
 
     public function actionApi($id)
     {
+        $this->layout = "plain";
         $modelList = Api::find()
             ->select(
                 [
