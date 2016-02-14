@@ -39,7 +39,7 @@ class SiteController extends Controller
     public function actionApi($id)
     {
         $this->layout = "plain";
-        $modelList = Api::find()
+        $model = Api::find()
             ->select(
                 [
                     'id' => 'id',
@@ -52,9 +52,13 @@ class SiteController extends Controller
             )
             ->joinWith(['apiStatus'])
             ->where(['id' => $id])
-            ->all();
+            ->one();
 
-        return $this->render('index', ['modelList' => $modelList]);
+        if ($model == null) {
+            throw new \yii\web\HttpException('Not found.');
+        }
+
+        return $this->render('api', ['model' => $model]);
     }
 
     /**
