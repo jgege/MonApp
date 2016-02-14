@@ -33,10 +33,7 @@ AppAsset::register($this);
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-    ]);
+    ]);;
     NavBar::end();
     ?>
 

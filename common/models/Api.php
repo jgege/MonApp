@@ -25,6 +25,9 @@ class Api extends \yii\db\ActiveRecord
     const ACCESS_TYPE_TOKEN = 'token';
     const ACCESS_TYPE_AUTH = 'auth';
 
+    public $last_time_checked;
+    public $last_time_working;
+
     /**
      * @inheritdoc
      */
